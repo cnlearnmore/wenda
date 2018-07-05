@@ -1,0 +1,22 @@
+package com.nowcoder.wenda.model;
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
+
+@Component(value = "hostHolder")
+public class HostHolder {
+    private static ThreadLocal<User> users = new ThreadLocal<User>();
+
+    public User getUser(){
+        return users.get();
+    }
+
+    public void setUser(User user){
+        users.set(user);
+    }
+
+    public void clear(){
+        users.remove();
+    }
+}
