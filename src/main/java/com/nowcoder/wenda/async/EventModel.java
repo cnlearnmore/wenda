@@ -12,19 +12,20 @@ public class EventModel {
 
     private Map<String, String> exts = new HashMap<String, String>();   //保留现场的其他信息
 
-    public EventModel(){
+    public EventModel() {
 
     }
-    public EventModel(EventType type){
+
+    public EventModel(EventType type) {
         this.type = type;
     }
 
-    public EventModel setExt(String key, String value){
+    public EventModel setExt(String key, String value) {
         exts.put(key, value);
         return this;
     }
 
-    public String getExt(String key){
+    public String getExt(String key) {
         return exts.get(key);
     }
 

@@ -5,16 +5,18 @@ import org.junit.Test;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-class MyThread extends Thread{
+class MyThread extends Thread {
     private int tid;
-    public MyThread(int tid){
+
+    public MyThread(int tid) {
         this.tid = tid;
     }
-    public void run(){
+
+    public void run() {
         try {
-            for(int i = 0; i < 100; ++i){
+            for (int i = 0; i < 100; ++i) {
                 Thread.sleep(1000);
-                System.out.println(String.format("tid:%d,%d",tid, i));
+                System.out.println(String.format("tid:%d,%d", tid, i));
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -22,34 +24,37 @@ class MyThread extends Thread{
     }
 }
 
-class Consumer implements Runnable{
+class Consumer implements Runnable {
     private BlockingQueue<String> q;
-    public Consumer(BlockingQueue<String> q){
-        this.q = q;
-    }
 
-    @Override
-    public void run() {
-        try{
-            while(true){
-                System.out.println(Thread.currentThread().getName() + ":" + q.take());;
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-}
-
-class Producer implements Runnable{
-    private BlockingQueue<String> q;
-    public Producer(BlockingQueue<String> q){
+    public Consumer(BlockingQueue<String> q) {
         this.q = q;
     }
 
     @Override
     public void run() {
         try {
-            for(int i = 0; i < 100; ++i){
+            while (true) {
+                System.out.println(Thread.currentThread().getName() + ":" + q.take());
+                ;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+class Producer implements Runnable {
+    private BlockingQueue<String> q;
+
+    public Producer(BlockingQueue<String> q) {
+        this.q = q;
+    }
+
+    @Override
+    public void run() {
+        try {
+            for (int i = 0; i < 100; ++i) {
                 Thread.sleep(1000);
                 q.put(String.valueOf(i));
             }
@@ -60,26 +65,22 @@ class Producer implements Runnable{
 }
 
 
-
-
-
-
 public class MultiThreadTests {
 
-    public static void testThread(){
-        for(int i = 0; i < 100; ++i){
+    public static void testThread() {
+        for (int i = 0; i < 100; ++i) {
             new MyThread(i).start();
         }
     }
 
-    public static void testBlockingQueue(){
+    public static void testBlockingQueue() {
         BlockingQueue<String> q = new ArrayBlockingQueue<String>(10);
         new Thread(new Producer(q)).start();
-        new Thread(new Consumer(q),"Consumer1").start();
-        new Thread(new Consumer(q),"Consumer2").start();
+        new Thread(new Consumer(q), "Consumer1").start();
+        new Thread(new Consumer(q), "Consumer2").start();
     }
 
-    public static void main(String [] args){
+    public static void main(String[] args) {
 //        testThread();
 //        testBlockingQueue();
 //        testSynchronized();
@@ -93,37 +94,37 @@ public class MultiThreadTests {
 
     private static Object obj = new Object();
 
-    public static void testSynchronized1(){
-        synchronized (obj){
+    public static void testSynchronized1() {
+        synchronized (obj) {
             try {
-                for(int j = 0; j < 10; ++j){
+                for (int j = 0; j < 10; ++j) {
                     Thread.sleep(1000);
                     System.out.println(String.format("T3 %d", j));
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public static void testSynchronized2(){
-        synchronized (obj){
+    public static void testSynchronized2() {
+        synchronized (obj) {
             try {
-                for(int j = 0; j < 10; ++j){
+                for (int j = 0; j < 10; ++j) {
                     Thread.sleep(1000);
                     System.out.println(String.format("T4 %d", j));
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public static void testSynchronized(){
-        for(int i = 0; i < 10; ++i){
-            new Thread(new Runnable(){
+    public static void testSynchronized() {
+        for (int i = 0; i < 10; ++i) {
+            new Thread(new Runnable() {
                 @Override
-                public void run(){
+                public void run() {
                     testSynchronized1();
                     testSynchronized2();
                 }
@@ -171,17 +172,17 @@ public class MultiThreadTests {
     }
 
 
-    public static void testExecutor(){
+    public static void testExecutor() {
 //        ExecutorService service = Executors.newSingleThreadExecutor();
         ExecutorService service = Executors.newFixedThreadPool(2);
         service.submit(new Runnable() {
             @Override
             public void run() {
-                for(int i = 0; i < 10; ++i){
-                    try{
+                for (int i = 0; i < 10; ++i) {
+                    try {
                         Thread.sleep(1000);
                         System.out.println("Executor1:" + i);
-                    } catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
 
@@ -192,7 +193,7 @@ public class MultiThreadTests {
         service.submit(new Runnable() {
             @Override
             public void run() {
-                for(int i = 0; i < 10; ++i){
+                for (int i = 0; i < 10; ++i) {
                     try {
                         Thread.sleep(1000);
                         System.out.println("Executor2:" + i);
@@ -203,31 +204,31 @@ public class MultiThreadTests {
             }
         });
         service.shutdown();
-        while(!service.isTerminated()){
-            try{
+        while (!service.isTerminated()) {
+            try {
                 Thread.sleep(1000);
                 System.out.println("wait");
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
     private static int counter = 0;
-    private static AtomicInteger atomicInteger =  new AtomicInteger(0);
+    private static AtomicInteger atomicInteger = new AtomicInteger(0);
 
-    public static void testWithoutAtomic(){
-        for(int i = 0; i < 10; ++i){
+    public static void testWithoutAtomic() {
+        for (int i = 0; i < 10; ++i) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
                         Thread.sleep(1000);
-                        for(int j = 0; j < 10; ++j){
-                            counter ++;
+                        for (int j = 0; j < 10; ++j) {
+                            counter++;
                             System.out.println(counter);
                         }
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -235,17 +236,17 @@ public class MultiThreadTests {
         }
     }
 
-    public static void testWithAtomic(){
-        for(int i = 0; i < 10; ++i){
+    public static void testWithAtomic() {
+        for (int i = 0; i < 10; ++i) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
                         Thread.sleep(1000);
-                        for(int j = 0; j < 10; ++j){
+                        for (int j = 0; j < 10; ++j) {
                             System.out.println(atomicInteger.incrementAndGet());
                         }
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -253,7 +254,7 @@ public class MultiThreadTests {
         }
     }
 
-    public static void testFuture(){
+    public static void testFuture() {
         ExecutorService service = Executors.newSingleThreadExecutor();
         Future<Integer> future = service.submit(new Callable<Integer>() {
             @Override
@@ -265,10 +266,10 @@ public class MultiThreadTests {
         });
         service.shutdown();
 
-        try{
+        try {
             //System.out.println(future.get());
-            System.out.println(future.get(3000,TimeUnit.MILLISECONDS));
-        }catch (Exception e ){
+            System.out.println(future.get(3000, TimeUnit.MILLISECONDS));
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

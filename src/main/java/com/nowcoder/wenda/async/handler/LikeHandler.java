@@ -22,15 +22,15 @@ public class LikeHandler implements EventHandler {
     MessageService messageService;
     @Autowired
     UserService userService;
+
     @Override
     public void doHandle(EventModel model) {
-        System.out.println("i am doHandle in LikeHandler");
         Message message = new Message();
         message.setFromId(WendaUtil.SYSTEM_USERID);
         message.setToId(model.getEntityOwnerId());
         message.setCreatedDate(new Date());
         User user = userService.getUser(model.getActorId());
-        message.setContent("用户" + user.getName() + "赞了你的评论,http://localhost:8080/question/" + model.getExt("questionId") );
+        message.setContent("用户" + user.getName() + "赞了你的评论,http://localhost:8080/question/" + model.getExt("questionId"));
         messageService.addMessage(message);
     }
 

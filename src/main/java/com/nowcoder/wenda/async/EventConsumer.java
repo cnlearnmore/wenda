@@ -18,20 +18,21 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class EventConsumer implements InitializingBean ,ApplicationContextAware {
+public class EventConsumer implements InitializingBean, ApplicationContextAware {
     private static final Logger logger = LoggerFactory.getLogger(EventConsumer.class);
     @Autowired
     JedisAdapter jedisAdapter;
     private Map<EventType, List<EventHandler>> config = new HashMap<EventType, List<EventHandler>>();
     private ApplicationContext applicationContext;
+
     @Override
     public void afterPropertiesSet() throws Exception {
         Map<String, EventHandler> beans = applicationContext.getBeansOfType(EventHandler.class);
-        if(beans != null){
-            for(Map.Entry<String, EventHandler> entry : beans.entrySet()){
+        if (beans != null) {
+            for (Map.Entry<String, EventHandler> entry : beans.entrySet()) {
                 List<EventType> eventTypes = entry.getValue().getSupportEventTypes();
-                for(EventType type : eventTypes){
-                    if(!config.containsKey(type)){
+                for (EventType type : eventTypes) {
+                    if (!config.containsKey(type)) {
                         config.put(type, new ArrayList<EventHandler>());
                     }
                     config.get(type).add(entry.getValue());
@@ -41,20 +42,20 @@ public class EventConsumer implements InitializingBean ,ApplicationContextAware 
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                while(true){
+                while (true) {
                     String key = RedisKeyUtil.getEventQueueKey();
                     List<String> events = jedisAdapter.brpop(0, key);
-                    for(String message : events){
-                        if(message.equals(key)){
+                    for (String message : events) {
+                        if (message.equals(key)) {
                             //把key过滤掉，因为取出的第一个就是key
                             continue;
                         }
                         EventModel eventModel = JSON.parseObject(message, EventModel.class);
-                        if(!config.containsKey(eventModel.getType())){
+                        if (!config.containsKey(eventModel.getType())) {
                             logger.error("不能识别的事件");
                             continue;
                         }
-                        for(EventHandler handler : config.get(eventModel.getType())){
+                        for (EventHandler handler : config.get(eventModel.getType())) {
                             handler.doHandle(eventModel);
                         }
                     }

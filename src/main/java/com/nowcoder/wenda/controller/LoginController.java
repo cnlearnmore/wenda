@@ -31,31 +31,29 @@ public class LoginController {
 
     @RequestMapping(path = {"/reg/"}, method = {RequestMethod.POST})
     public String reg(Model model, @RequestParam("username") String username,
-                                    @RequestParam("password") String password,
-                                    @RequestParam(value = "rememberme", defaultValue = "false") boolean rememberme,
-                                    @RequestParam(value = "next", required = false) String next,
-                                    HttpServletResponse response){
+                      @RequestParam("password") String password,
+                      @RequestParam(value = "rememberme", defaultValue = "false") boolean rememberme,
+                      @RequestParam(value = "next", required = false) String next,
+                      HttpServletResponse response) {
         try {
-        Map<String, String> map = userService.register(username,password);
-            if(map.containsKey("ticket")){
+            Map<String, String> map = userService.register(username, password);
+            if (map.containsKey("ticket")) {
                 Cookie cookie = new Cookie("ticket", map.get("ticket"));
                 cookie.setPath("/");
-                if(rememberme){
-                    cookie.setMaxAge(3600*24*5);
+                if (rememberme) {
+                    cookie.setMaxAge(3600 * 24 * 5);
                 }
                 response.addCookie(cookie);
-                if(StringUtils.isEmpty(next)){
+                if (StringUtils.isEmpty(next)) {
                     return "redirect:/";
-                }
-                else{
+                } else {
                     return "redirect:" + next;
                 }
+            } else {
+                model.addAttribute("msg", map.get("msg"));
+                return "login";
             }
-            else{
-            model.addAttribute("msg", map.get("msg"));
-            return "login";
-        }
-    } catch (Exception e) {
+        } catch (Exception e) {
             logger.error("注册异常", e.getMessage());
             return "login";
         }
@@ -63,7 +61,7 @@ public class LoginController {
 
     @RequestMapping(path = {"/reglogin"}, method = {RequestMethod.GET})
     public String reg(Model model,
-                      @RequestParam(value = "next", required = false) String next){
+                      @RequestParam(value = "next", required = false) String next) {
         model.addAttribute("next", next);
         return "login";
     }
@@ -74,27 +72,26 @@ public class LoginController {
                         @RequestParam("password") String password,
                         @RequestParam(value = "next", required = false) String next,
                         @RequestParam(value = "rememberme", defaultValue = "false") boolean rememberme,
-                        HttpServletResponse response){
+                        HttpServletResponse response) {
 
         try {
-            Map<String, Object> map = userService.login(username,password);
-            if(map.containsKey("ticket")){
+            Map<String, Object> map = userService.login(username, password);
+            if (map.containsKey("ticket")) {
                 Cookie cookie = new Cookie("ticket", map.get("ticket").toString());
                 cookie.setPath("/");
-                if(rememberme){
-                    cookie.setMaxAge(3600*24*5);
+                if (rememberme) {
+                    cookie.setMaxAge(3600 * 24 * 5);
                 }
                 response.addCookie(cookie);
 //登录消息控制
 //                eventProducer.fireEvent(new EventModel(EventType.LOGIN).setExt("username",username).setExt("email","syj837358584@163.com").setActorId((int)map.get("userId")));
 
-                if(StringUtils.isEmpty(next)){
+                if (StringUtils.isEmpty(next)) {
                     return "redirect:/";
-                }
-                else{
+                } else {
                     return "redirect:" + next;
                 }
-            }else{
+            } else {
                 model.addAttribute("msg", map.get("msg"));
                 return "login";
             }
@@ -106,7 +103,7 @@ public class LoginController {
     }
 
     @RequestMapping(path = {"/logout"}, method = {RequestMethod.GET})
-    public String logout(@CookieValue("ticket") String ticket){
+    public String logout(@CookieValue("ticket") String ticket) {
         userService.logout(ticket);
         return "redirect:/";
     }

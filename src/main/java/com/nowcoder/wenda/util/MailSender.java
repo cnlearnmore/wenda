@@ -27,17 +27,17 @@ public class MailSender implements InitializingBean {
     private static final Logger logger = LoggerFactory.getLogger(MailSender.class);
     private JavaMailSenderImpl mailSender;
 
-    public boolean sendWithHTMLTemplate(String to, String subject, String template, Map<String, Object> model){
+    public boolean sendWithHTMLTemplate(String to, String subject, String template, Map<String, Object> model) {
         Configuration configuration = new Configuration();
         try {
             String nick = MimeUtility.encodeText("");
-            InternetAddress from = new InternetAddress("1432099051@qq.com" );
+            InternetAddress from = new InternetAddress("1432099051@qq.com");
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
             configuration.setDirectoryForTemplateLoading(new File("D:\\IDEAproject\\wenda\\src\\main\\resources\\templates\\mails"));
             Template t = configuration.getTemplate("login_exception.ftl");
             StringWriter writer = new StringWriter();
-            t.process(model,writer);
+            t.process(model, writer);
             mimeMessageHelper.setTo(to);
             mimeMessageHelper.setFrom(from);
             mimeMessageHelper.setSubject(subject);

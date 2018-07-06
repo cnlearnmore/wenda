@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan(basePackages = "com.nowcoder.wenda.dao")
 public class WendaApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(WendaApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(WendaApplication.class, args);
+    }
 }

@@ -14,9 +14,9 @@ public class SettingController {
     @Autowired
     WendaService wendaService;
 
-    @RequestMapping(value = "/setting",method = {RequestMethod.GET})
+    @RequestMapping(value = "/setting", method = {RequestMethod.GET})
     @ResponseBody
-    public String setting(HttpSession httpSession){
+    public String setting(HttpSession httpSession) {
         return "setting ok" + wendaService.getMessage(1);
     }
 }

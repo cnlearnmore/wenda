@@ -35,21 +35,21 @@ public class CommentController {
 
     @RequestMapping(path = {"/addComment"}, method = {RequestMethod.POST})
     public String addComment(@RequestParam("questionId") int questionId,
-                             @RequestParam("content") String content){
+                             @RequestParam("content") String content) {
         try {
             Comment comment = new Comment();
             comment.setContent(content);
-            if(hostHolder.getUser() != null){
+            if (hostHolder.getUser() != null) {
                 comment.setUserId(hostHolder.getUser().getId());
 
-            }else{
+            } else {
                 comment.setUserId(WendaUtil.ANONYMOUS_USERID);
             }
             comment.setCreatedDate(new Date());
             comment.setEntityType(EntityType.ENTITY_QUESTION);
             comment.setEntityId(questionId);
             commentService.addComment(comment);
-            int count = commentService.getCommentCount(comment.getEntityId(),comment.getEntityType());
+            int count = commentService.getCommentCount(comment.getEntityId(), comment.getEntityType());
             questionService.updateCommentCount(comment.getEntityId(), count);
             //添加消息,此处对应的handler还没写，写完关注部分再写这里
 //            eventProducer.fireEvent(new EventModel().setActorId(comment.getUserId()).setEntityType(EntityType.ENTITY_COMMENT).setEntityId(questionId));

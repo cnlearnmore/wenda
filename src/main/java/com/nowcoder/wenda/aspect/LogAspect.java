@@ -14,18 +14,20 @@ import java.util.Date;
 @Component
 public class LogAspect {
     private static final Logger logger = LoggerFactory.getLogger(LogAspect.class);
+
     @Before("execution(* com.nowcoder.wenda.controller.*Controller.*(..))")
-    public void beforeMethod(JoinPoint joinPoint){
+    public void beforeMethod(JoinPoint joinPoint) {
         StringBuilder sb = new StringBuilder();
-        for(Object arg : joinPoint.getArgs()){
-            if(arg != null){
+        for (Object arg : joinPoint.getArgs()) {
+            if (arg != null) {
                 sb.append("arg:" + arg.toString() + "|");
             }
         }
         logger.info("before method " + joinPoint.getSignature().getName() + " in class: " + joinPoint.getSignature().getDeclaringTypeName() + " The parameters are: " + sb.toString() + " " + new Date());
     }
+
     @After("execution(* com.nowcoder.wenda.controller.IndexController.*(..))")
-    public void afterMethod(){
+    public void afterMethod() {
         logger.info("after method " + new Date());
     }
 }

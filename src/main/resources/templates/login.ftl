@@ -20,7 +20,7 @@
             <h2 class="subtitle">
                 <#if msg??>                ${msg!''}
                 <#else>                与世界分享你的知识、经验和见解
-                </#if>            </h2>
+                </#if> </h2>
         </div>
         <div class="desk-front sign-flow clearfix sign-flow-simple">
             <div class="view view-signin" data-za-module="SignInForm" style="display: block;">
@@ -36,8 +36,12 @@
                     </div>
                     <input type="hidden" name="next" value="${next!''}"/>
                     <div class="button-wrapper command clearfix">
-                        <button class="sign-button submit" type="submit" onclick="form=document.getElementById('regloginform');form.action='/login/'">登录</button>
-                        <button class="sign-button submit" type="submit" onclick="form=document.getElementById('regloginform');form.action='/reg/'">注册</button>
+                        <button class="sign-button submit" type="submit"
+                                onclick="form=document.getElementById('regloginform');form.action='/login/'">登录
+                        </button>
+                        <button class="sign-button submit" type="submit"
+                                onclick="form=document.getElementById('regloginform');form.action='/reg/'">注册
+                        </button>
                     </div>
                     <div class="signin-misc-wrapper clearfix">
                         <label class="remember-me">

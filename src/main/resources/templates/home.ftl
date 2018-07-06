@@ -8,7 +8,7 @@
 <#--</#list>-->
 <#--<#assign keys=map?keys/>-->
 <#--<#list keys as key>-->
-    <#--key:${key}-value:${map["${key}"]}-->
+<#--key:${key}-value:${map["${key}"]}-->
 <#--</#list>-->
 
 <#--${user.name}-->

@@ -9,7 +9,6 @@
 
     function fFollowUser() {
         $(document).on('click', '.js-follow-user', function (oEvent) {
-            alert('你点击了关注或取消关注按钮');
             var oEl = $(oEvent.currentTarget);
             var sId = $.trim(oEl.attr('data-id'));
             if (!sId) {

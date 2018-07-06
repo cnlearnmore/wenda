@@ -31,10 +31,10 @@ public class HomeController {
     @Autowired
     CommentService commentService;
 
-    @RequestMapping(path = {"/user/{userId}"},method = {RequestMethod.GET})
-    public String userIndex(Model model, @PathVariable("userId") int userId){
-        List<ViewObject> vos = getQuestions(userId,0,10);
-        model.addAttribute("vos",vos);
+    @RequestMapping(path = {"/user/{userId}"}, method = {RequestMethod.GET})
+    public String userIndex(Model model, @PathVariable("userId") int userId) {
+        List<ViewObject> vos = getQuestions(userId, 0, 10);
+        model.addAttribute("vos", vos);
 
         User user = userService.getUser(userId);
         ViewObject vo = new ViewObject();
@@ -42,27 +42,27 @@ public class HomeController {
         vo.set("commentCount", commentService.getUserCommentCount(userId));
         vo.set("followerCount", followService.getFollowerCount(EntityType.ENTITY_USER, userId));
         vo.set("followeeCount", followService.getFolloweeCount(userId, EntityType.ENTITY_USER));
-        if(hostHolder.getUser() != null){
+        if (hostHolder.getUser() != null) {
             vo.set("followed", followService.isFollower(hostHolder.getUser().getId(), EntityType.ENTITY_USER, userId));
-        }else{
+        } else {
             vo.set("followed", false);
         }
-        model.addAttribute("profileUser",vo);
+        model.addAttribute("profileUser", vo);
         return "index";
     }
 
-    @RequestMapping(path = {"/","/index"}, method = RequestMethod.GET)
-    public String index(Model model){
-        List<ViewObject> vos = getQuestions(0,0,10);
+    @RequestMapping(path = {"/", "/index"}, method = RequestMethod.GET)
+    public String index(Model model) {
+        List<ViewObject> vos = getQuestions(0, 0, 10);
         model.addAttribute("vos", vos);
         hostHolder.getUser();
         return "index";
     }
 
-    private List<ViewObject> getQuestions(int userId, int offset, int limit){
+    private List<ViewObject> getQuestions(int userId, int offset, int limit) {
         List<Question> questionList = questionService.getLatestQuestions(userId, offset, limit);
         List<ViewObject> vos = new ArrayList<ViewObject>();
-        for(Question question : questionList){
+        for (Question question : questionList) {
             ViewObject vo = new ViewObject();
             vo.set("question", question);
             vo.set("followCount", followService.getFollowerCount(EntityType.ENTITY_QUESTION, question.getId()));

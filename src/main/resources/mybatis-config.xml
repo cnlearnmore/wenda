@@ -4,8 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
-
-
     <settings>
         <!-- Globally enables or disables any caches configured in any mapper under this configuration -->
         <setting name="cacheEnabled" value="true"/>
@@ -20,8 +18,7 @@
     </settings>
 
     <!-- Continue going here -->
-
     <!--<mappers>-->
-        <!--<mapper resource="com.nowcoder.wenda.dao/QuestionDao.xml"/>-->
+    <!--<mapper resource="com.nowcoder.wenda.dao/QuestionDao.xml"/>-->
     <!--</mappers>-->
 </configuration>

@@ -3,19 +3,19 @@
 <link rel="stylesheet" href="../styles/detail.css">
     <div class="zg-wrap zu-main clearfix " role="main">
     <#--****************start**************************-->
+    <#if profileUser??>
         <div class="zm-profile-section-wrap zm-profile-followee-page">
-        <#if profileUser??>
             <div class="zm-profile-section-list">
                 <div id="zh-profile-follows-list">
                     <div class="zh-general-list clearfix">
                         <div class="zm-profile-card zm-profile-section-item zg-clear no-hovercard">
-                                <#if profileUser.followed?? && profileUser.followed==true>
+                                <#if profileUser?? && profileUser.followed?? && profileUser.followed==true>
                                     <div class="zg-right">
                                         <button class="zg-btn zm-rich-follow-btn small nth-0 js-follow-user zg-btn-unfollow"
                                                 data-id="${profileUser.user.id!''}" data-status="1">取消关注
                                         </button>
                                     </div>
-                                <#else>
+                                <#elseif profileUser?? && profileUser.followed??>
                                     <div class="zg-right">
                                         <button class="zg-btn zg-btn-follow zm-rich-follow-btn small nth-0
                                     js-follow-user"
@@ -50,8 +50,9 @@
                     </div>
                 </div>
             </div>
-        </#if>
+
         </div>
+    </#if>
     <#--****************end**************************-->
         <div class="zu-main-content">
             <div class="zu-main-content-inner">

@@ -16,7 +16,8 @@ public class UserService {
 
     @Autowired
     UserDao userDao;
-    public User getUser(int id){
+
+    public User getUser(int id) {
 //        System.out.println(userDao.selectById(id).getName());
         return userDao.selectById(id);
     }
@@ -24,19 +25,19 @@ public class UserService {
     @Autowired
     LoginTicketDao loginTicketDao;
 
-    public Map<String,String> register(String username,String password){
+    public Map<String, String> register(String username, String password) {
         Map<String, String> map = new HashMap<String, String>();
-        if(StringUtils.isEmpty(username)){
+        if (StringUtils.isEmpty(username)) {
             map.put("msg", "用户名不能为空");
             return map;
         }
-        if(StringUtils.isEmpty(password)){
+        if (StringUtils.isEmpty(password)) {
             map.put("msg", "密码不能为空");
             return map;
         }
 
         User user = userDao.selectByName(username);
-        if(user != null){
+        if (user != null) {
             map.put("msg", "用户名已经存在");
             return map;
         }
@@ -52,23 +53,23 @@ public class UserService {
         return map;
     }
 
-    public Map<String,Object> login(String username,String password){
+    public Map<String, Object> login(String username, String password) {
         Map<String, Object> map = new HashMap<String, Object>();
-        if(StringUtils.isEmpty(username)){
+        if (StringUtils.isEmpty(username)) {
             map.put("msg", "用户名不能为空");
             return map;
         }
-        if(StringUtils.isEmpty(password)){
+        if (StringUtils.isEmpty(password)) {
             map.put("msg", "密码不能为空");
             return map;
         }
 
         User user = userDao.selectByName(username);
-        if(user == null){
+        if (user == null) {
             map.put("msg", "用户名不存在");
             return map;
         }
-        if(!WendaUtil.MD5(password + user.getSalt()).equals(user.getPassword())){
+        if (!WendaUtil.MD5(password + user.getSalt()).equals(user.getPassword())) {
             map.put("msg", "密码错误");
             return map;
         }
@@ -78,15 +79,15 @@ public class UserService {
         return map;
     }
 
-    public User selectByName(String name){
+    public User selectByName(String name) {
         return userDao.selectByName(name);
     }
 
-    public String addLoginTicket(int userId){
+    public String addLoginTicket(int userId) {
         LoginTicket loginTicket = new LoginTicket();
         loginTicket.setUserId(userId);
         Date now = new Date();
-        now.setTime(now.getTime() + 3600*24*100);
+        now.setTime(now.getTime() + 3600 * 24 * 100);
         loginTicket.setExpired(now);
         loginTicket.setStatus(0);
         loginTicket.setTicket(UUID.randomUUID().toString().replaceAll("-", ""));
@@ -94,7 +95,7 @@ public class UserService {
         return loginTicket.getTicket();
     }
 
-    public void logout(String ticket){
-        loginTicketDao.updateStatus(ticket,1);
+    public void logout(String ticket) {
+        loginTicketDao.updateStatus(ticket, 1);
     }
 }
