@@ -64,20 +64,19 @@ public class FollowService {
     }
 
 
-    public List<Integer> getFollowees(int entityType, int entityId, int count) {
-        String followeeKey = RedisKeyUtil.getFolloweeKey(entityType, entityId);
+    public List<Integer> getFollowees(int userId, int entityType, int count) {
+        String followeeKey = RedisKeyUtil.getFolloweeKey(userId, entityType);
+        System.out.println("the followeeKey is " + followeeKey);
         return getIdsFromSet(jedisAdapter.zrevrange(followeeKey, 0, count));
     }
 
-    public List<Integer> getFollowees(int entityType, int entityId, int offset, int count) {
-        String followeeKey = RedisKeyUtil.getFolloweeKey(entityType, entityId);
+    public List<Integer> getFollowees(int userId, int entityType, int offset, int count) {
+        String followeeKey = RedisKeyUtil.getFolloweeKey(userId, entityType);
         return getIdsFromSet(jedisAdapter.zrevrange(followeeKey, offset, count));
     }
 
     public long getFollowerCount(int entityType, int entityId) {
-        System.out.println("This is getFollowerCount");
         String followerKey = RedisKeyUtil.getFollowerKey(entityType, entityId);
-        System.out.println("TEST: The wrong followerKey is : " + followerKey);
         return jedisAdapter.zcard(followerKey);
     }
 

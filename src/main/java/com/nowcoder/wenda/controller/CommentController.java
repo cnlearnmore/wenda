@@ -53,7 +53,7 @@ public class CommentController {
             questionService.updateCommentCount(comment.getEntityId(), count);
             //添加消息,此处对应的handler还没写，写完关注部分再写这里
 //            eventProducer.fireEvent(new EventModel().setActorId(comment.getUserId()).setEntityType(EntityType.ENTITY_COMMENT).setEntityId(questionId));
-
+            eventProducer.fireEvent(new EventModel(EventType.COMMENT).setActorId(comment.getUserId()).setEntityType(EntityType.ENTITY_COMMENT).setEntityId(questionId).setEntityOwnerId(questionService.selectById(questionId).getUserId()));
         } catch (Exception e) {
             logger.error("增加评论失败" + e.getMessage());
             e.printStackTrace();

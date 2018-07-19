@@ -19,6 +19,7 @@ public class QuestionService {
         return questionDao.selectLatestQuestions(userId, offset, limit);
     }
 
+
     public int addQuestion(Question question) {
         question.setContent(HtmlUtils.htmlEscape(question.getContent()));
         question.setTitle(HtmlUtils.htmlEscape(question.getTitle()));

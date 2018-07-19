@@ -250,6 +250,22 @@ public class JedisAdapter implements InitializingBean {
         return 0;
     }
 
+    public List<String> lrange(String key, int start, int end) {
+        Jedis jedis = null;
+        try {
+            jedis = pool.getResource();
+            jedis.auth("root");
+            jedis.select(9);
+            return jedis.lrange(key, start, end);
+        } catch (Exception e) {
+            logger.error("发生异常" + e.getMessage());
+        } finally {
+            if (jedis != null) {
+                jedis.close();
+            }
+        }
+        return null;
+    }
 
 //    public static  void main(String[] args){
 //        Jedis jedis = new Jedis("redis://localhost:6379/9");

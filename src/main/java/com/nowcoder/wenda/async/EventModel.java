@@ -8,7 +8,7 @@ public class EventModel {
     private int actorId;    //触发者   //谁点了赞
     private int entityType; //触发的（对象）载体 //给哪个东西点赞?
     private int entityId;   //触发的载体 //给哪个东西点赞?
-    private int entityOwnerId;  //触发的对象？
+    private int entityOwnerId;  //触发的对象？  。比如关注了一个问题，这个问题属于哪个人。
 
     private Map<String, String> exts = new HashMap<String, String>();   //保留现场的其他信息
 
