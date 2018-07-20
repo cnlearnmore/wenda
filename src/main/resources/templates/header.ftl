@@ -74,10 +74,11 @@
             <button class="zu-top-add-question" id="zu-top-add-question">提问</button>
         </#if>
         <div role="search" id="zh-top-search" class="zu-top-search">
-            <form method="GET" action="https://nowcoder.com/search" id="zh-top-search-form" class="zu-top-search-form">
+            <form method="GET" action="/search" id="zh-top-search-form" class="zu-top-search-form">
                 <input type="hidden" name="type" value="content">
                 <label for="q" class="hide-text">biubiu搜索</label><input type="text" class="zu-top-search-input" id="q"
-                                                                        name="q" autocomplete="off" value=""
+                                                                        name="q" autocomplete="off"
+                                                                        value="${keyword!''}"
                                                                         placeholder="搜索你感兴趣的内容" role="combobox"
                                                                         aria-autocomplete="list">
                 <button type="submit" class="zu-top-search-button"><span class="hide-text">搜索</span><span
