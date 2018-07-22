@@ -19,6 +19,6 @@
 
     <!-- Continue going here -->
     <!--<mappers>-->
-    <!--<mapper resource="com.nowcoder.wenda.dao/QuestionDao.xml"/>-->
+    <!--<mapper resource="com.syj.wenda.com.syj.wenda.dao/QuestionDao.xml"/>-->
     <!--</mappers>-->
 </configuration>
