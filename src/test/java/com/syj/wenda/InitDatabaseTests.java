@@ -15,11 +15,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Date;
 import java.util.Random;
 
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 //@SpringBootTest
 //@Sql("/init-schema.sql")
 //    这个类是为了添加数据库初始数据，所以不要轻易使用，此操作会格式化数据库
 public class InitDatabaseTests {
+/*
 
     @Autowired
     UserDao userDao;
@@ -66,4 +67,5 @@ public class InitDatabaseTests {
         System.out.println(questionDao.selectLatestQuestions(0, 0, 10));
 
     }
+    */
 }

@@ -19,6 +19,7 @@ import java.util.Properties;
 
 @Service
 public class MailSender implements InitializingBean {
+    //这个类需要修改，因为路径问题还没有解决。。。
     private static final Logger logger = LoggerFactory.getLogger(MailSender.class);
     private JavaMailSenderImpl mailSender;
 
