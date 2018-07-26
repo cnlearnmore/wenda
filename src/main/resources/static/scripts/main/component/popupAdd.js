@@ -73,14 +73,14 @@
                 bSubmit = true;
                 // 提交内容
                 $.ajax({
-                    url: '/question/add',
+                    url: '/wenda' + '/question/add',
                     type: 'post',
                     data: oData,
                     dataType: 'json'
                 }).done(function (oResult) {
                     // 未登陆，跳转到登陆页面
                     if (oResult.code === 999) {
-                        window.location.href = '/reglogin?next=' + window.encodeURIComponent(window.location.href);
+                        window.location.href = '/wenda' + '/reglogin?next=' + window.encodeURIComponent(window.location.href);
                     } else {
                         oConf.ok && oConf.ok.call(that);
                         oAdd.emit('ok');

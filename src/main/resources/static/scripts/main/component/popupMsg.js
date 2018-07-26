@@ -79,14 +79,14 @@
                 bSubmit = true;
                 // 提交内容
                 $.ajax({
-                    url: '/msg/addMessage',
+                    url: '/wenda' + '/msg/addMessage',
                     type: 'post',
                     data: oData,
                     dataType: 'json'
                 }).done(function (oResult) {
                     // 未登陆，跳转到登陆页面
                     if (oResult.code === 999) {
-                        window.location.href = '/reglogin?next=' + window.encodeURIComponent(window.location.href);
+                        window.location.href = '/wenda' + '/reglogin?next=' + window.encodeURIComponent(window.location.href);
                     } else if (oResult.code !== 0) {
                         that.error(oResult.msg || '出现错误，请重试');
                     } else {

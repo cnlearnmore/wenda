@@ -4,6 +4,8 @@
       class="js is-AppPromotionBarVisible cssanimations csstransforms csstransitions flexbox no-touchevents no-mobile"
       style="">
 <head>
+    <#--下面这段代码会使消息机制异常，很神奇-->
+    <#--<base id="ctx" href="${ctx}" >-->
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit">

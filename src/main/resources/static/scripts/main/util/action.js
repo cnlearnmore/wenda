@@ -1,3 +1,5 @@
+// 路径问题已解决
+// var ctx = document.getElementById("ctx").href;
 (function (window, undefined) {
     var Action = Base.createClass('main.util.Action');
     $.extend(Action, {
@@ -21,7 +23,7 @@
     function fLike(oConf) {
         var that = this;
         that.post({
-            url: '/like',
+            url: '/wenda' + '/like',
             data: {commentId: oConf.commentId},
             call: oConf.call,
             error: oConf.error,
@@ -40,7 +42,7 @@
     function fDislike(oConf) {
         var that = this;
         that.post({
-            url: '/dislike',
+            url: '/wenda' + '/dislike',
             data: {commentId: oConf.commentId},
             call: oConf.call,
             error: oConf.error,
@@ -59,7 +61,7 @@
     function fFollowUser(oConf) {
         var that = this;
         that.post({
-            url: '/followUser',
+            url: '/wenda' + '/followUser',
             data: {userId: oConf.userId},
             call: oConf.call,
             error: oConf.error,
@@ -78,7 +80,7 @@
     function fUnFollowUser(oConf) {
         var that = this;
         that.post({
-            url: '/unfollowUser',
+            url: '/wenda' + '/unfollowUser',
             data: {userId: oConf.userId},
             call: oConf.call,
             error: oConf.error,
@@ -97,7 +99,7 @@
     function fFollowQuestion(oConf) {
         var that = this;
         that.post({
-            url: '/followQuestion',
+            url: '/wenda' + '/followQuestion',
             data: {questionId: oConf.questionId},
             call: oConf.call,
             error: oConf.error,
@@ -116,7 +118,7 @@
     function fUnFollowQuestion(oConf) {
         var that = this;
         that.post({
-            url: '/unfollowQuestion',
+            url: '/wenda' + '/unfollowQuestion',
             data: {questionId: oConf.questionId},
             call: oConf.call,
             error: oConf.error,
@@ -146,7 +148,7 @@
             if (oResult.code === 999) {
                 // 未登录
                 alert('未登录');
-                window.location.href = '/reglogin?next=' + window.encodeURI(window.location.href);
+                window.location.href = '/wenda/reglogin?next=' + window.encodeURI(window.location.href);
                 return;
             }
             nCode === 0 && oConf.call && oConf.call(oResult);
