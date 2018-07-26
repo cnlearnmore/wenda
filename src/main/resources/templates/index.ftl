@@ -1,6 +1,6 @@
 <#include "header.ftl">
-<link rel="stylesheet" href="../styles/index.css">
-<link rel="stylesheet" href="../styles/detail.css">
+<link rel="stylesheet" href="${ctx}/styles/index.css">
+<link rel="stylesheet" href="${ctx}/styles/detail.css">
     <div class="zg-wrap zu-main clearfix " role="main">
     <#--****************start**************************-->
     <#if profileUser??>
@@ -23,21 +23,21 @@
                                         </button>
                                     </div>
                                 </#if> <a title="Barty" class="zm-item-link-avatar"
-                                          href="/user/${profileUser.user.id!''}">
+                                          href="${ctx}/user/${profileUser.user.id!''}">
                             <img src="${profileUser.user.headUrl!''}" class="zm-item-img-avatar">
                         </a>
                             <div class="zm-list-content-medium">
                                 <h2 class="zm-list-content-title"><a data-tip="p${t!''}${buaabarty!''}"
-                                                                     href="/user/${profileUser.user.id!''}"
+                                                                     href="${ctx}/user/${profileUser.user.id!''}"
                                                                      class="zg-link"
                                                                      title="Barty">${profileUser.user.name!''}</a></h2>
 
                             <#--<div class="zg-big-gray">计蒜客教研首席打杂</div>-->
                                 <div class="details zg-gray">
-                                    <a target="_blank" href="/user/${profileUser.user.id!''}/followers"
+                                    <a target="_blank" href="${ctx}/user/${profileUser.user.id!''}/followers"
                                        class="zg-link-gray-normal">${profileUser.followerCount!''}粉丝</a>
                                     /
-                                    <a target="_blank" href="/user/${profileUser.user.id!''}/followees"
+                                    <a target="_blank" href="${ctx}/user/${profileUser.user.id!''}/followees"
                                        class="zg-link-gray-normal">${profileUser.followeeCount!''}关注</a>
                                     /
                                     <a target="_blank" href="#"
@@ -60,7 +60,7 @@
                     <i class="zg-icon zg-icon-feedlist"></i>最新动态
                     <input type="hidden" id="is-topstory">
                     <span class="zg-right zm-noti-cleaner-setting" style="list-style:none">
-                        <a href="https://nowcoder.com/settings/filter" class="zg-link-gray-normal">
+                        <a href="#" class="zg-link-gray-normal">
                             <i class="zg-icon zg-icon-settings"></i>设置</a></span>
                 </div>
                 <div class="zu-main-feed-con navigable" data-feedtype="topstory" id="zh-question-list"
@@ -81,7 +81,7 @@
                                     <div class="avatar">
                                         <a title="${vo.user.name!''}" data-tip="p${t!''}${amuro1230!''}"
                                            class="zm-item-link-avatar" target="_blank"
-                                           href="https://nowcoder.com/people/amuro1230">
+                                           href="#">
                                             <img src="${vo.user.headUrl!''}" class="zm-item-img-avatar"></a>
                                     </div>
                                     <div class="feed-main">
@@ -90,7 +90,7 @@
                                             <meta itemprop="answer-url-token" content="13174385">
                                             <h2 class="feed-title">
                                                 <a class="question_link" target="_blank"
-                                                   href="/question/${vo.question.id!''}">${vo.question.title!''}</a>
+                                                   href="${ctx}/question/${vo.question.id!''}">${vo.question.title!''}</a>
                                             </h2>
                                             <div class="feed-question-detail-item">
                                                 <div class="question-description-plain zm-editable-content"></div>
@@ -103,7 +103,7 @@
                                                 <div class="zm-item-answer-author-info">
                                                     <a class="author-link" data-tip="p${b!''}${amuro1230!''}"
                                                        target="_blank"
-                                                       href="/user/${vo.user.id!''}">${vo.user.name!''}</a>
+                                                       href="${ctx}/user/${vo.user.id!''}">${vo.user.name!''}</a>
                                                     ,${vo.question.createdDate?string('yyyy-MM-dd HH:mm:ss')} </div>
                                                 <div class="zm-item-vote-info" data-votecount="4168"
                                                      data-za-module="VoteInfo">
@@ -115,7 +115,9 @@
                                                      data-resourceid="123114" data-action="/answer/content"
                                                      data-author-name="李淼"
                                                      data-entry-url="/question/19857995/answer/13174385">
-                                                    <div class="zh-summary summary clearfix">${vo.question.content!''}</div>
+                                                    <div class="text-line-count-controll">
+                                                        <div class="zh-summary summary clearfix">${vo.question.content!''}</div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="feed-meta">
@@ -144,6 +146,7 @@
                         </#list> </div>
                     <a href="javascript:;" id="zh-load-more" data-method="next"
                        class="zg-btn-white zg-r3px zu-button-more" style="">更多</a></div>
+                <#--更多功能还未实现，方法一：点击更多后可以直接跳转到传统分页界面显示。方法二：使用JS和ajax动态加载，不过这个需要改动的较多。-->
             </div>
         </div>
     </div>

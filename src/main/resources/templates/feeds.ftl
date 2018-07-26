@@ -1,5 +1,4 @@
 <#include "header.ftl">
-
 <#--#macro (comment_question, $vo)-->
 <#macro comment_question vo>
 <div class="feed-item folding feed-item-hook feed-item-2
@@ -9,7 +8,7 @@
     <div class="feed-item-inner">
         <div class="avatar">
             <a title="${vo.userName!''}" data-tip="p$t$amuro1230" class="zm-item-link-avatar" target="_blank"
-               href="/user/${vo.userId!''}">
+               href="${ctx}/user/${vo.userId!''}">
                 <img src="${vo.userHead!''}" class="zm-item-img-avatar"></a>
         </div>
         <div class="feed-main">
@@ -18,7 +17,7 @@
                 <meta itemprop="answer-url-token" content="13174385">
 
                 <#--<h2 class="feed-title">-->
-                    <#--<a class="question_link" target="_blank" href="/question/$!{vo.questionId}">${vo.questionTitle!''}</a></h2>-->
+                    <#--<a class="question_link" target="_blank" href="${ctx}/question/$!{vo.questionId}">${vo.questionTitle!''}</a></h2>-->
                 <#--<div class="feed-question-detail-item">-->
                     <#--<div class="question-description-plain zm-editable-content"></div>-->
                 <#--</div>-->
@@ -29,7 +28,7 @@
                         <#--<a class="zm-item-vote-count js-expand js-vote-count" href="javascript:;" data-bind-votecount="">${vo.followCount!''}</a></div>-->
 
                     <div class="zm-item-answer-author-info">
-                        <a class="author-link" data-tip="p$b$amuro1230" target="_blank" href="/user/${vo.userId!''}">${vo.userName!''}</a>
+                        <a class="author-link" data-tip="p$b$amuro1230" target="_blank" href="${ctx}/user/${vo.userId!''}">${vo.userName!''}</a>
                         评论了该问题 ，${vo.createdDate?string('yyyy-MM-dd HH:mm:ss')}
                     </div>
 
@@ -78,7 +77,7 @@
     <div class="feed-item-inner">
         <div class="avatar">
             <a title="${vo.userName!''}" data-tip="p$t$amuro1230" class="zm-item-link-avatar" target="_blank"
-               href="/user/${vo.userId!''}">
+               href="${ctx}/user/${vo.userId!''}">
                 <img src="${vo.userHead!''}" class="zm-item-img-avatar"></a>
         </div>
         <div class="feed-main">
@@ -87,7 +86,7 @@
                 <meta itemprop="answer-url-token" content="13174385">
 
                 <#--<h2 class="feed-title">-->
-                    <#--<a class="question_link" target="_blank" href="/question/${vo.questionId!''}">${vo.questionTitle!''}</a></h2>-->
+                    <#--<a class="question_link" target="_blank" href="${ctx}/question/${vo.questionId!''}">${vo.questionTitle!''}</a></h2>-->
                 <#--<div class="feed-question-detail-item">-->
                     <#--<div class="question-description-plain zm-editable-content"></div>-->
                 <#--</div>-->
@@ -98,7 +97,7 @@
                         <#--<a class="zm-item-vote-count js-expand js-vote-count" href="javascript:;" data-bind-votecount="">${vo.followCount}</a></div>-->
 
                     <div class="zm-item-answer-author-info">
-                        <a class="author-link" data-tip="p$b$amuro1230" target="_blank" href="/user/${vo.userId!''}">${vo.userName!''}</a>
+                        <a class="author-link" data-tip="p$b$amuro1230" target="_blank" href="${ctx}/user/${vo.userId!''}">${vo.userName!''}</a>
                         关注了该问题 ，${vo.createdDate?string('yyyy-MM-dd HH:mm:ss')}
                     </div>
 
@@ -138,8 +137,8 @@
 </#macro>
 
 
-<link rel="stylesheet" href="../styles/index.css">
-<link rel="stylesheet" href="../styles/detail.css">
+<link rel="stylesheet" href="${ctx}/styles/index.css">
+<link rel="stylesheet" href="${ctx}/styles/detail.css">
     <div class="zg-wrap zu-main clearfix " role="main">
         <div class="zu-main-content">
             <div class="zu-main-content-inner">
@@ -147,7 +146,7 @@
                     <i class="zg-icon zg-icon-feedlist"></i>最新动态
                     <input type="hidden" id="is-topstory">
                     <span class="zg-right zm-noti-cleaner-setting" style="list-style:none">
-                        <a href="https://nowcoder.com/settings/filter" class="zg-link-gray-normal">
+                        <a href="#" class="zg-link-gray-normal">
                             <i class="zg-icon zg-icon-settings"></i>设置</a></span>
                 </div>
                 <div class="zu-main-feed-con navigable" data-feedtype="topstory" id="zh-question-list"
@@ -181,5 +180,4 @@
         </div>
     </div>
 <#include "js.ftl">
-<script type="text/javascript" src="/scripts/main/site/detail.js"></script>
 <#include "footer.ftl">

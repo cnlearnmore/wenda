@@ -42,7 +42,8 @@ public class CommentController {
                 comment.setUserId(hostHolder.getUser().getId());
 
             } else {
-                comment.setUserId(WendaUtil.ANONYMOUS_USERID);
+//                为了功能的完善，暂时注销
+                //comment.setUserId(WendaUtil.ANONYMOUS_USERID);
             }
             comment.setCreatedDate(new Date());
             comment.setEntityType(EntityType.ENTITY_QUESTION);

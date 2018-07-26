@@ -1,4 +1,4 @@
-<#include "header.ftl"><link rel="stylesheet" href="../styles/detail.css">
+<#include "header.ftl"><link rel="stylesheet" href="${ctx}/styles/detail.css">
 <div class="zg-wrap zu-main clearfix with-indention-votebar" itemscope="" itemtype="http://schema.org/Question"
      id="zh-single-question-page" data-urltoken="36301524" role="main">
     <div class="zu-main-content">
@@ -42,7 +42,7 @@
                             <a href="javascript:void(0);"><strong class="js-user-count">${followUsers?size}</strong></a>人关注该问题
                         </div>
                         <div class="list zu-small-avatar-list zg-clear js-user-list">
-                            <#list followUsers as vo>                            <a class="zm-item-link-avatar js-user-${vo.id!''}" href="/user/${vo.id!''}"
+                            <#list followUsers as vo>                            <a class="zm-item-link-avatar js-user-${vo.id!''}" href="${ctx}/user/${vo.id!''}"
                                data-original_title="${vo.name!''}">
                                 <img src="${vo.headUrl!''}"
                                      class="zm-item-img-avatar"></a>
@@ -107,7 +107,7 @@
                 </#list>            </div>
             <a name="draft"></a>
 
-            <form action="/addComment" method="post">
+            <form action="${ctx}/addComment" method="post">
                 <input type="hidden" name="questionId" value="${question.id!''}"/>
             <div id="zh-question-answer-form-wrap" class="zh-question-answer-form-wrap">
                 <div class="zm-editable-editor-wrap" style="">

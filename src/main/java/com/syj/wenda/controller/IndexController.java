@@ -13,6 +13,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 
+//这个类做测试用
 //@Controller
 public class IndexController {
     @Autowired
@@ -48,7 +49,6 @@ public class IndexController {
             model.addAttribute("map", map);
         }
         model.addAttribute("user", new User("xiaoming"));
-
 
         return "home";
     }

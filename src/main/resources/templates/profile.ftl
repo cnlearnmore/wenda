@@ -1,6 +1,6 @@
 <#include "header.ftl">
-<link rel="stylesheet" href="../styles/index.css">
-<link rel="stylesheet" href="../styles/detail.css">
+<link rel="stylesheet" href="${ctx}/styles/index.css">
+<link rel="stylesheet" href="${ctx}/styles/detail.css">
     <div class="zg-wrap zu-main clearfix " role="main">
         <div class="zm-profile-section-wrap zm-profile-followee-page">
 
@@ -23,21 +23,21 @@
                                     js-follow-user" data-id="${profileUser.user.id!''}">关注
                                         </button>
                                     </#if> </div>
-                            <a title="Barty" class="zm-item-link-avatar" href="/user/${profileUser.user.id!''}">
+                            <a title="Barty" class="zm-item-link-avatar" href="${ctx}/user/${profileUser.user.id!''}">
                                 <img src="${profileUser.user.headUrl!''}" class="zm-item-img-avatar">
                             </a>
                             <div class="zm-list-content-medium">
                                 <h2 class="zm-list-content-title"><a data-tip="p${t!''}${buaabarty!''}"
-                                                                     href="/user/${profileUser.user.id!''}"
+                                                                     href="${ctx}/user/${profileUser.user.id!''}"
                                                                      class="zg-link">${profileUser.user.name!''}</a>
                                 </h2>
 
                             <#--<div class="zg-big-gray">计蒜客教研首席打�?</div>-->
                                 <div class="details zg-gray">
-                                    <a target="_blank" href="/user/${profileUser.user.id!''}/followers"
+                                    <a target="_blank" href="${ctx}/user/${profileUser.user.id!''}/followers"
                                        class="zg-link-gray-normal">${profileUser.followerCount!''}粉丝</a>
                                     /
-                                    <a target="_blank" href="/user/${profileUser.user.id!''}/followees"
+                                    <a target="_blank" href="${ctx}/user/${profileUser.user.id!''}/followees"
                                        class="zg-link-gray-normal">${profileUser.followeeCount!''}关注</a>
                                     /
                                     <a target="_blank" href="#"
@@ -56,7 +56,7 @@
                 <div class="zg-section" id="zh-home-list-title">
                     <i class="zg-icon zg-icon-feedlist"></i>最新动态
                     <span class="zg-right zm-noti-cleaner-setting" style="list-style:none">
-                        <a href="https://nowcoder.com/settings/filter" class="zg-link-gray-normal">
+                        <a href="#" class="zg-link-gray-normal">
                             <i class="zg-icon zg-icon-settings"></i>设置
                         </a>
                     </span>
@@ -71,7 +71,7 @@
                                     <div class="avatar">
                                         <a title="${vo.user.name!''}" data-tip="p${t!''}${amuro1230!''}"
                                            class="zm-item-link-avatar" target="_blank"
-                                           href="https://nowcoder.com/people/amuro1230">
+                                           href="#">
                                             <img src="${vo.user.headUrl!''}" class="zm-item-img-avatar"></a>
                                     </div>
                                     <div class="feed-main">
@@ -80,7 +80,7 @@
                                             <meta itemprop="answer-url-token" content="13174385">
                                             <h2 class="feed-title">
                                                 <a class="question_link" target="_blank"
-                                                   href="/question/${vo.question.id!''}">${vo.question.title!''}</a>
+                                                   href="${ctx}/question/${vo.question.id!''}">${vo.question.title!''}</a>
                                             </h2>
                                             <div class="feed-question-detail-item">
                                                 <div class="question-description-plain zm-editable-content"></div>
@@ -93,7 +93,7 @@
                                                 <div class="zm-item-answer-author-info">
                                                     <a class="author-link" data-tip="p${b!''}${amuro1230!''}"
                                                        target="_blank"
-                                                       href="/user/${vo.user.id!''}">${vo.user.name!''}</a>
+                                                       href="${ctx}/user/${vo.user.id!''}">${vo.user.name!''}</a>
                                                     , ${vo.question.createdDate?string('yyyy-MM-dd HH:mm:ss')}</div>
                                                 <div class="zm-item-vote-info" data-votecount="4168"
                                                      data-za-module="VoteInfo">
@@ -138,5 +138,5 @@
         </div>
     </div>
 <#include "js.ftl">
-<script type="text/javascript" src="/scripts/main/site/profile.js"></script>
+<script type="text/javascript" src="${ctx}/scripts/main/site/profile.js"></script>
 <#include "footer.ftl">

@@ -1,6 +1,8 @@
 package com.syj.wenda.controller;
 
+import com.syj.wenda.async.EventModel;
 import com.syj.wenda.async.EventProducer;
+import com.syj.wenda.async.EventType;
 import com.syj.wenda.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -81,7 +83,7 @@ public class LoginController {
                 }
                 response.addCookie(cookie);
 //登录消息控制
-//                eventProducer.fireEvent(new EventModel(EventType.LOGIN).setExt("username",username).setExt("email","syj837358584@163.com").setActorId((int)map.get("userId")));
+                //eventProducer.fireEvent(new EventModel(EventType.LOGIN).setExt("username",username).setExt("email","XXXX接收方XXXX@163.com").setActorId((int)map.get("userId")));
 
                 if (StringUtils.isEmpty(next)) {
                     return "redirect:/";

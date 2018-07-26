@@ -1,6 +1,6 @@
 <#include "header.ftl">
-<link rel="stylesheet" href="../../styles/result.css">
-<link rel="stylesheet" href="../../styles/detail.css">
+<link rel="stylesheet" href="${ctx}/styles/result.css">
+<link rel="stylesheet" href="${ctx}/styles/detail.css">
     <div id="main">
         <div class="zg-wrap zu-main clearfix ">
             <div class="zm-profile-section-wrap zm-profile-followee-page">
@@ -26,21 +26,21 @@
                                     js-follow-user" data-id="${vo.user.id!''}">关注
                                         </button>
                                     </div>
-                                </#if> <a title="Barty" class="zm-item-link-avatar" href="/user/${vo.user.id!''}">
+                                </#if> <a title="Barty" class="zm-item-link-avatar" href="${ctx}/user/${vo.user.id!''}">
                                     <img src="${vo.user.headUrl!''}" class="zm-item-img-avatar">
                                 </a>
                                     <div class="zm-list-content-medium">
                                         <h2 class="zm-list-content-title"><a data-tip="p${t!''}${buaabarty!''}"
-                                                                             href="/user/${vo.user.id!''}"
+                                                                             href="${ctx}/user/${vo.user.id!''}"
                                                                              class="zg-link"
                                                                              title="Barty">${vo.user.name!''}</a></h2>
 
                                         <!-- <div class="zg-big-gray">blablablabla</div> -->
                                         <div class="details zg-gray">
-                                            <a target="_blank" href="/user/${vo.user.id!''}/followers"
+                                            <a target="_blank" href="${ctx}/user/${vo.user.id!''}/followers"
                                                class="zg-link-gray-normal">${vo.followerCount!''}粉丝</a>
                                             /
-                                            <a target="_blank" href="/user/${vo.user.id!''}/followees"
+                                            <a target="_blank" href="${ctx}/user/${vo.user.id!''}/followees"
                                                class="zg-link-gray-normal">${vo.followeeCount!''}关注</a>
                                             /
                                             <a target="_blank" href="#"
@@ -58,5 +58,6 @@
         </div>
     </div>
 <#include "js.ftl">
-<script type="text/javascript" src="/scripts/main/site/follow.js"></script>
+<#--这个JS待完成-->
+<script type="text/javascript" src="${ctx}/scripts/main/site/follow.js"></script>
 <#include "footer.ftl">

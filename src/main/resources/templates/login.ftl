@@ -1,4 +1,6 @@
+<#assign ctx=request.contextPath />
 <!DOCTYPE html>
+<#--关于注册功能，还需要继续完善，防止恶意注册，重点是让恶意注册的注册成本加大，可以使用验证码和拼图方式-->
 <html lang="zh-CN"
       class="is-AppPromotionBarVisible cssanimations csstransforms csstransitions flexbox no-touchevents no-mobile">
 <head>
@@ -9,7 +11,7 @@
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>biubiu - 与世界分享你的知识、经验和见解</title>
     <link rel="dns-prefetch" href="">
-    <link rel="stylesheet" href="../styles/login.css">
+    <link rel="stylesheet" href="${ctx}/styles/login.css">
 
 </head>
 <body class="zhi  no-auth">
@@ -24,7 +26,7 @@
         </div>
         <div class="desk-front sign-flow clearfix sign-flow-simple">
             <div class="view view-signin" data-za-module="SignInForm" style="display: block;">
-                <form action="/reg/" id="regloginform" method="post">
+                <form action="${ctx}/reg/" id="regloginform" method="post">
                     <input type="hidden" name="_xsrf" value="21aa1c8d254df2899b23ab9afbd62a53">
                     <div class="group-inputs">
                         <div class="email input-wrapper">
@@ -37,10 +39,10 @@
                     <input type="hidden" name="next" value="${next!''}"/>
                     <div class="button-wrapper command clearfix">
                         <button class="sign-button submit" type="submit"
-                                onclick="form=document.getElementById('regloginform');form.action='/login/'">登录
+                                onclick="form=document.getElementById('regloginform');form.action='${ctx}/login/'">登录
                         </button>
                         <button class="sign-button submit" type="submit"
-                                onclick="form=document.getElementById('regloginform');form.action='/reg/'">注册
+                                onclick="form=document.getElementById('regloginform');form.action='${ctx}/reg/'">注册
                         </button>
                     </div>
                     <div class="signin-misc-wrapper clearfix">

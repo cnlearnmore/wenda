@@ -6,7 +6,7 @@
     <groupId>com.syj</groupId>
     <artifactId>wenda</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>wenda</name>
     <description>newcoder project</description>
@@ -84,6 +84,7 @@
             <artifactId>solr-solrj</artifactId>
             <version>7.4.0</version>
         </dependency>
+        <!--*****************javax.servlet-api、spring-boot-starter-tomcat为打包时添加的********************-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>

@@ -11742,6 +11742,14 @@ html.no-touchevents .zh-add-question-form .question-suggest-ac-wrap .ac-renderer
     cursor: pointer
 }
 
+/*created by syj*/
+.text-line-count-controll{
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden
+}
+
 .zh-summary .inline-img, .CardAdFeed-image {
     float: left;
     height: 112px;

@@ -1,5 +1,5 @@
 <#include "header.ftl">
-<link rel="stylesheet" media="all" href="../styles/letter.css">
+<link rel="stylesheet" media="all" href="${ctx}/styles/letter.css">
 <div id="main">
     <div class="zg-wrap zu-main clearfix ">
         <ul class="letter-chatlist">

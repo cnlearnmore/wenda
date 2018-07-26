@@ -1,6 +1,6 @@
 <#assign bodyclass = "page-search"><#include "header.ftl">
-<link rel="stylesheet" href="../styles/result.css">
-<link rel="stylesheet" href="../styles/detail.css">
+<link rel="stylesheet" href="${ctx}/styles/result.css">
+<link rel="stylesheet" href="${ctx}/styles/detail.css">
 <div class="zg-wrap zu-main clearfix" role="main">
     <div class="zu-main-content">
         <div class="zu-main-content-inner">
@@ -8,7 +8,7 @@
                 <#list vos as vo>
                     <li class="item clearfix">
                         <div class="title">
-                            <a target="_blank" href="/question/${vo.question.id!''}"
+                            <a target="_blank" href="${ctx}/question/${vo.question.id!''}"
                                class="js-title-link">${vo.question.title!''}</a>
                         </div>
                         <div class="content">
@@ -23,7 +23,7 @@
                                         <div class="entry-body">
                                             <div class="entry-meta">
                                                 <strong class="author-line"><a class="author"
-                                                                               href="/user/${vo.user.id!''}">${vo.user.name!''}</a>,${vo.question.createdDate?string('yyyy-MM-dd HH:mm:ss')}
+                                                                               href="${ctx}/user/${vo.user.id!''}">${vo.user.name!''}</a>,${vo.question.createdDate?string('yyyy-MM-dd HH:mm:ss')}
                                                 </strong>
                                             </div>
                                             <div class="entry-content js-collapse-body">
