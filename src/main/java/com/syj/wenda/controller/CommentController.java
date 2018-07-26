@@ -42,8 +42,12 @@ public class CommentController {
                 comment.setUserId(hostHolder.getUser().getId());
 
             } else {
+                return "redirect:/reglogin?next=/question/" + questionId;
 //                为了功能的完善，暂时注销
                 //comment.setUserId(WendaUtil.ANONYMOUS_USERID);
+            }
+            if(content == null || content.length() == 0){
+                return "redirect:/question/" + questionId;
             }
             comment.setCreatedDate(new Date());
             comment.setEntityType(EntityType.ENTITY_QUESTION);
